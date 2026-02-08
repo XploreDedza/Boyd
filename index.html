@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>For Sarah ❤️</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      height: 100vh;
+      overflow: hidden;
+      font-family: 'Arial', sans-serif;
+      background: linear-gradient(180deg, #ffdde1, #ee9ca7);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Card */
+    .card {
+      position: relative;
+      background: white;
+      padding: 35px 25px;
+      border-radius: 22px;
+      text-align: center;
+      width: 90%;
+      max-width: 340px;
+      z-index: 2;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+    }
+
+    h1 {
+      color: #e63946;
+      margin-bottom: 10px;
+    }
+
+    p {
+      color: #555;
+      font-size: 15px;
+      margin-bottom: 25px;
+    }
+
+    .name {
+      font-weight: bold;
+      color: #e63946;
+    }
+
+    /* Buttons */
+    .buttons {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+    }
+
+    button {
+      padding: 12px 22px;
+      font-size: 15px;
+      border-radius: 25px;
+      border: none;
+      cursor: pointer;
+    }
+
+    .yes {
+      background: #25D366;
+      color: white;
+    }
+
+    .no {
+      background: #eee;
+      color: #999;
+      cursor: not-allowed;
+    }
+
+    /* Hearts */
+    .heart {
+      position: absolute;
+      top: -20px;
+      color: rgba(255, 0, 76, 0.6);
+      font-size: 18px;
+      animation: fall linear infinite;
+    }
+
+    @keyframes fall {
+      0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(110vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Falling hearts container -->
+  <div id="hearts"></div>
+
+  <div class="card">
+    <h1>💖 Sarah</h1>
+    <p>
+      I’ve been meaning to ask this…<br><br>
+      <strong>Will you be my Valentine?</strong>
+    </p>
+
+    <div class="buttons">
+      <button class="yes" onclick="sendWhatsApp()">YES 💘</button>
+      <button class="no" disabled>NO</button>
+    </div>
+  </div>
+
+  <script>
+    /* WhatsApp redirect */
+    function sendWhatsApp() {
+      const phoneNumber = "265999818700"; // <-- replace
+      const message = encodeURIComponent(
+        "Hey 😊 I chose YES because I’d really like us to talk more, be real with each other, and see what this could be ❤️"
+      );
+
+      window.open(`https://wa.me/${phoneNumber}?text=${message}`, "_blank");
+    }
+
+    /* Falling hearts */
+    const heartsContainer = document.getElementById("hearts");
+
+    function createHeart() {
+      const heart = document.createElement("div");
+      heart.classList.add("heart");
+      heart.innerHTML = "❤️";
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.animationDuration = (3 + Math.random() * 4) + "s";
+      heart.style.fontSize = (14 + Math.random() * 14) + "px";
+
+      heartsContainer.appendChild(heart);
+
+      setTimeout(() => {
+        heart.remove();
+      }, 7000);
+    }
+
+    setInterval(createHeart, 400);
+  </script>
+
+</body>
+</html>
